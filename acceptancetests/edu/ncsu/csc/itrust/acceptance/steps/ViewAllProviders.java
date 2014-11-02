@@ -1,5 +1,8 @@
 package edu.ncsu.csc.itrust.acceptance.steps;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ByIdOrName;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -32,10 +35,12 @@ public class ViewAllProviders extends Step
     }
 
     @Given("^Patient (\\d+) has authenticated successfully$")
-    public void patient_has_authenticated_successfully(int arg1)
+    public void patient_has_authenticated_successfully(int patientId)
             throws Throwable
     {
-        // Write code here that turns the phrase above into concrete actions
+        driver.findElement(By.name("j_username")).sendKeys(String.valueOf(patientId));
+        driver.findElement(By.name("j_password")).sendKeys(String.valueOf("pw"));
+        driver.findElement(By.name("j_password")).submit();
     }
 
     @When("^Patient clicks \"(.*?)\" link$")
