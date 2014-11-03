@@ -2,7 +2,7 @@
 1. Clone this repo
 2. Follow setup instructions here: http://agile.csc.ncsu.edu/iTrust/wiki/doku.php?id=home_deployment_instructions
 3. Install Eclipse Cucumber plugin: http://cukes.info/cucumber-eclipse/
-4. After server is started (and you have verified you can seet http://localhost:8080/iTrust/), right click on a feature file -> Run As... -> Cucumber Feature
+4. After server has started (and you have verified you can see http://localhost:8080/iTrust/), right click on a feature file -> Run As... -> Cucumber Feature
 
 Firefox should launch and the tests are executed.
 
