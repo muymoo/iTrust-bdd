@@ -7,6 +7,7 @@
 4. Create a new Eclipse project using iTrust-bdd as the existing location.
 5. Right click the iTrust-bdd project and add External Jars to the classpath - add all Tomcat 6.0 jars.  Your iTrust-bdd project should now have no problems (except maybe complaining about Tomcat 7.0 vs 6.0 which doesn't seem to matter).
 6. After server has started (and you have verified you can see http://localhost:8080/iTrust/), right click on a feature file -> Run As... -> Cucumber Feature
+  * I actually have to go into Run As Configuration and manually choose Cucumber Feature for some reason.
 
 Firefox should launch and the tests are executed.
 
