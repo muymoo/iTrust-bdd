@@ -19,18 +19,17 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-public class AddPublicHealthAgent extends Step
+public class AddPublicHealthAgent 
 {
 
     @Given("^Admin has authenticated successfully\\.$")
     public void admin_has_authenticated_successfully()
             throws Throwable
     {
-        driver.get("http://localhost:8080/iTrust/");
-        driver.findElement(By.name("j_username")).sendKeys(String.valueOf("9000000001"));
-        driver.findElement(By.name("j_password")).sendKeys(String.valueOf("pw"));
-        driver.findElement(By.name("j_password")).submit();
-        assertEquals("Welcome, Shape Shifter", driver.findElement(By.className("welcome")).getText());
+//        browser.findElement(By.name("j_username")).sendKeys(String.valueOf("9000000001"));
+//        browser.findElement(By.name("j_password")).sendKeys(String.valueOf("pw"));
+//        browser.findElement(By.name("j_password")).submit();
+//        assertEquals("Welcome, Shape Shifter", browser.findElement(By.className("welcome")).getText());
     }
 
     @When("^Admin clicks the “Add PHA” link under the “Add” menu subheading\\.$")
