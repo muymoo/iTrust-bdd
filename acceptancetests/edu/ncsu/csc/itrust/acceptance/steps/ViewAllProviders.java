@@ -15,7 +15,6 @@ import cucumber.api.java.en.When;
 
 public class ViewAllProviders
 {
-
     private final WebDriver browser;
 
     public ViewAllProviders(SharedDriver browser)
