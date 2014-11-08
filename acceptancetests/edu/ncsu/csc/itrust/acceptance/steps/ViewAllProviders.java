@@ -66,19 +66,19 @@ public class ViewAllProviders
         browser.findElement(By.linkText(link)).click();
     }
 
-    @Then("^The first result is \"(.*?)\", \"(.*?)\", \"(.*?)\", \"(.*?)\", \"(.*?)\"$")
-    public void the_first_result_is(String name, String specialty, String address, String date, String designatedHCP)
+    @Then("^Row (\\d+) result is \"(.*?)\", \"(.*?)\", \"(.*?)\", \"(.*?)\", \"(.*?)\"$")
+    public void the_row_result_is(int rowNumber, String name, String specialty, String address, String date,
+            String designatedHCP)
             throws Throwable
     {
-
         WebElement providerTable = browser.findElement(By.id("hcp_table"));
-        int secondRowIndex = 1;
-        List<WebElement> firstResult = providerTable.findElements(By.tagName("tr")).get(secondRowIndex)
+        List<WebElement> rowResult = providerTable.findElements(By.tagName("tr")).get(rowNumber)
                 .findElements(By.tagName("td"));
-        assertEquals("Gandalf Stormcrow", firstResult.get(0).getText());
-        assertEquals("none", firstResult.get(1).getText());
-        assertEquals("4321 My Road St PO BOX 2 New York, NY 10453", firstResult.get(2).getText());
-        assertEquals("09/14/2009", firstResult.get(3).getText());
-        assertTrue(firstResult.get(4).findElement(By.tagName("input")).isSelected());
+        assertEquals(name, rowResult.get(0).getText());
+        assertEquals(specialty, rowResult.get(1).getText());
+        assertEquals(address, rowResult.get(2).getText());
+        assertEquals(date, rowResult.get(3).getText());
+        assertEquals(Boolean.parseBoolean(designatedHCP), rowResult.get(4).findElement(By.tagName("input")).isSelected());
     }
+
 }
