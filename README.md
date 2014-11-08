@@ -24,3 +24,6 @@ Firefox should launch and the tests are executed.
 6 Steps (6 passed)
 0m6.385s
 ```
+
+## Tests
+Writing tests from http://agile.csc.ncsu.edu/iTrust/wiki/doku.php?id=acceptance_test_plan
