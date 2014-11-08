@@ -1,7 +1,6 @@
 package edu.ncsu.csc.itrust.acceptance.steps;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -9,7 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import cucumber.api.java.en.Given;
+import cucumber.api.java.After;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
@@ -53,6 +52,16 @@ public class MyProviders
         assertEquals(date, rowResult.get(3).getText());
         assertEquals(Boolean.parseBoolean(designatedHCP), rowResult.get(4).findElement(By.tagName("input"))
                 .isSelected());
+    }
+
+    @After("@hcp")
+    public void afterScenario()
+    {
+        WebElement kellyDoctorDHCP = browser.findElement(By.xpath("//*[@id=\"hcp_table\"]/tbody/tr[3]/td[5]/input"));
+        if ( kellyDoctorDHCP.isSelected() )
+        {
+            kellyDoctorDHCP.click();
+        }
     }
 
 }
