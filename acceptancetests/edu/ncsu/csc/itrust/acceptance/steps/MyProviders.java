@@ -45,6 +45,27 @@ public class MyProviders
                 .isSelected());
     }
 
+    @When("^Patient enters \"(.*?)\" into the text box for finding a new HCP$")
+    public void patient_enters_into_the_text_box_for_finding_a_new_HCP(String doctorName)
+            throws Throwable
+    {
+        browser.findElement(By.name("doctor")).sendKeys(doctorName);
+    }
+
+    @When("^Patient enters \"(.*?)\" into the text box for limiting the search by specialty$")
+    public void patient_enters_into_the_text_box_for_limiting_the_search_by_specialty(String specialty)
+            throws Throwable
+    {
+        browser.findElement(By.name("filter_specialty")).sendKeys(specialty);
+    }
+
+    @When("^Patient clicks \"(.*?)\"$")
+    public void patient_clicks(String arg1)
+            throws Throwable
+    {
+        browser.findElement(By.name("update_filter")).submit();
+    }
+
     @After("@hcp")
     public void afterScenario()
     {
