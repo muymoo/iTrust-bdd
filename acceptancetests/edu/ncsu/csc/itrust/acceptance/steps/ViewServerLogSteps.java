@@ -43,7 +43,7 @@ public class ViewServerLogSteps {
 		Assert.assertEquals(rows.size(), 4);
 	}
 	
-	@Then("^Row (\\d+) should be (.+)\\. (.+)\\. (.+)\\.$")
+	@Then("^AL Row (\\d+) should be (.+)\\. (.+)\\. (.+)\\.$")
 	public void row_should_be(int rowNum, String accessor, String role, String description) throws Throwable {
 		WebElement list = browser.findElement(By.cssSelector("table.fTable"));
 		List<WebElement> rows = list.findElements(By.cssSelector("tbody tr"));
