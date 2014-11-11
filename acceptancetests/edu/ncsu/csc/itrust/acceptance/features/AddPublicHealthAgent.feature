@@ -1,4 +1,4 @@
-Feature: Add Public Health Agent
+Feature: UC2 Add Public Health Agent
 
   Scenario: 
     Given Admin 9000000001 has authenticated successfully.

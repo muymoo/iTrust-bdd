@@ -22,15 +22,6 @@ public class MyProviders
         this.browser = browser;
     }
 
-    @When("^Patient clicks \"(.*?)\" link$")
-    public void patient_clicks_My_Providers_link(String link)
-            throws Throwable
-    {
-        browser.findElement(By.xpath("//*[@id=\"iTrustMenu\"]/div/div[2]/div[1]")).click();
-
-        browser.findElement(By.linkText(link)).click();
-    }
-
     @When("^Patient clicks checkbox to change Kelly Doctor from undesignated to designated$")
     public void patient_clicks_checkbox_to_change_Kelly_Doctor_from_undesignated_to_designated()
             throws Throwable
