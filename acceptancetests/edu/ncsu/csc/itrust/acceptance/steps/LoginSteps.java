@@ -36,6 +36,15 @@ public class LoginSteps
         assertEquals("Welcome, Shape Shifter", browser.findElement(By.className("welcome")).getText());
     }
     
+    @Given("^HCP 1 has authenticated successfully$")
+    public void hcp_has_authenticated_successfully()
+            throws Throwable
+    {
+        browser.findElement(By.name("j_username")).sendKeys(String.valueOf("9000000000"));
+        browser.findElement(By.name("j_password")).sendKeys(String.valueOf("pw"));
+        browser.findElement(By.name("j_password")).submit();
+    }
+    
     @Given("^Patient (\\d+) has authenticated successfully$")
     public void patient_has_authenticated_successfully(int patientId)
             throws Throwable
