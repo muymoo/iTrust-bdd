@@ -2,10 +2,12 @@ package edu.ncsu.csc.itrust.acceptance.steps;
 
 import java.util.List;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -19,12 +21,16 @@ public class EditPatientSteps {
         this.browser = browser;
     }
     
-    @When("^HCP searches and selects (\\d+)$")
-    public void hcp_searches_and_selects(int arg1) throws Throwable {
+    @When("^HCP searches and selects (.+)$")
+    public void searchForPatient(String name) throws Throwable {
+    	if(name.equals("lastpatient")) {
+    		name = CreatePatientSteps.lastCreatedPatientName;
+    	}
+    	
         WebElement searchBox = browser.findElement(By.id("searchBox"));
-        searchBox.sendKeys("2");
+        searchBox.sendKeys(name);
         
-        WebElement result = browser.findElement(By.cssSelector("#searchTarget table input[value=\"2\"]"));
+        WebElement result = browser.findElement(By.cssSelector("#searchTarget table input[value=\"" + name + "\"]"));
         result.click();
     }
 
@@ -69,5 +75,34 @@ public class EditPatientSteps {
     public void there_is_an_error_that_there_is_no_data_in_the_past_years() throws Throwable {
         WebElement error = browser.findElement(By.cssSelector(".iTrustMessage"));
         Assert.assertEquals(error.getText(), "Patient has no data available from the past 3 years");
+    }
+    
+
+    @When("^HCP selects the Allergy \"(.*?)\" and clicks Add Allergy$")
+    public void hcp_selects_the_Allergy_and_clicks_Add_Allergy(String drug) throws Throwable {
+        Select select = new Select (browser.findElement(By.id("description")));
+        select.selectByVisibleText(drug);
+        
+        WebElement btn = browser.findElement(By.cssSelector("input[value=\"Add Allergy\"]"));
+        btn.click();
+    }
+//    
+//    @When("^When HCP checks is (.+) and if not change to$")
+//    public void checkAndChangePatientIfNeeded(String name) {
+//    	WebElement currentPatient = browser.findElement(By.cssSelector("#iTrustSelectedPatient span b"));
+//    	if(!currentPatient.getText().equals(name)) {
+//    		WebElement changePatient = browser.findElement(By.cssSelector("#iTrustSelectedPatient span a"));
+//    		changePatient.click();
+//    		
+//    		searchForPatient();
+//    	}    When HCP checks is Trend Setter and if not change to
+//
+//    }    When HCP searches and selects lastpatient
+
+    
+    @Then("^the HCP is presented with the following information: Allergy Added$")
+    public void the_HCP_is_presented_with_the_following_information_Allergy_Added_Medication_is_currently_prescribed_to_Trend_Setter() throws Throwable {
+        WebElement msg = browser.findElement(By.className("iTrustError"));
+        Assert.assertEquals(msg.getText(), "Allergy Added");
     }
 }
