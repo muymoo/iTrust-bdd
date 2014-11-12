@@ -12,12 +12,12 @@ import cucumber.api.java.After;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-public class MyProviders
+public class MyProvidersSteps
 {
 
     private final WebDriver browser;
 
-    public MyProviders(SharedDriver browser)
+    public MyProvidersSteps(SharedDriver browser)
     {
         this.browser = browser;
     }
