@@ -26,7 +26,7 @@ public class LoginSteps
         this.browser = browser;
     }
 
-    @Given("^Admin 9000000001 has authenticated successfully\\.$")
+    @Given("^Admin 9000000001 has authenticated successfully$")
     public void admin_has_authenticated_successfully()
             throws Throwable
     {
