@@ -100,9 +100,9 @@ public class EditPatientSteps {
 //    }    When HCP searches and selects lastpatient
 
     
-    @Then("^the HCP is presented with the following information: Allergy Added$")
-    public void the_HCP_is_presented_with_the_following_information_Allergy_Added_Medication_is_currently_prescribed_to_Trend_Setter() throws Throwable {
+    @Then("^the HCP is presented with the following information: (.*)$")
+    public void message(String text) throws Throwable {
         WebElement msg = browser.findElement(By.className("iTrustError"));
-        Assert.assertEquals(msg.getText(), "Allergy Added");
+        Assert.assertTrue(msg.getText().contains(text));
     }
 }
