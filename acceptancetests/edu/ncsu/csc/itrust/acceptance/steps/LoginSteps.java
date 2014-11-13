@@ -10,8 +10,6 @@
 
 package edu.ncsu.csc.itrust.acceptance.steps;
 
-import static org.junit.Assert.assertEquals;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -26,14 +24,13 @@ public class LoginSteps
         this.browser = browser;
     }
 
-    @Given("^Admin 9000000001 has authenticated successfully$")
-    public void admin_has_authenticated_successfully()
+    @Given("^(?:ER|Admin) \"(.*?)\" has authenticated successfully$")
+    public void admin_has_authenticated_successfully(String id)
             throws Throwable
     {
-        browser.findElement(By.name("j_username")).sendKeys(String.valueOf("9000000001"));
+        browser.findElement(By.name("j_username")).sendKeys(id);
         browser.findElement(By.name("j_password")).sendKeys(String.valueOf("pw"));
         browser.findElement(By.name("j_password")).submit();
-        assertEquals("Welcome, Shape Shifter", browser.findElement(By.className("welcome")).getText());
     }
     
     @Given("^HCP 1 has authenticated successfully$")
@@ -45,7 +42,7 @@ public class LoginSteps
         browser.findElement(By.name("j_password")).submit();
     }
     
-    @Given("^Patient (\\d+) has authenticated successfully$")
+    @Given("^(?:ER|Patient) (\\d+) has authenticated successfully$")
     public void patient_has_authenticated_successfully(int patientId)
             throws Throwable
     {

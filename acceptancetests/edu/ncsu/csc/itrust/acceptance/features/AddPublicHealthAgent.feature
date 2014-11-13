@@ -1,7 +1,7 @@
 Feature: UC2 Add Public Health Agent
 
   Scenario: 
-    Given Admin 9000000001 has authenticated successfully
+    Given Admin "9000000001" has authenticated successfully
     When Admin clicks the "Add PHA" link under the "Add" menu subheading
     And Admin enters: first name: Frank last name: Sinatra email: frankie@gmail.com
     And Admin clicks the "Continue to PHA information" link.
