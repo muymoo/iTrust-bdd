@@ -59,4 +59,67 @@ public class ViewMyRecordsSteps {
 	    Assert.assertEquals(data.get(6).getText(), "");
 	    Assert.assertEquals(data.get(7).getText(), "");
 	}
+	
+
+	@When("^Patient clicks a link next to his office visit on (.+) to take satisfaction survey$")
+	public void patient_clicks_a_link_next_to_his_office_visit_on_to_take_satisfaction_survey(String date) throws Throwable {
+	    
+		// This is the grossest testing method I've probably ever written...
+		// but there are like 11 tables on this page and no ids or anything. 
+		List<WebElement> tables = browser.findElements(By.cssSelector("#iTrustContent table table"));
+		for(WebElement table : tables) {
+			List<WebElement> titles = table.findElements(By.cssSelector("th"));
+			for(WebElement title : titles) {
+				if(title.getText().equals("Office Visits")) {
+					// if we find the Office Visits table
+					List<WebElement> rows = table.findElements(By.tagName("tr"));
+					for(WebElement row : rows) {
+						List<WebElement> cells = row.findElements(By.tagName("td"));
+						if(cells.size() > 0 && cells.get(0).getText().equals(date)) {
+							// if it matches the date we want
+							List<WebElement> links = cells.get(1).findElements(By.linkText("Complete Visit Survey"));
+							if(links.size() > 0) {
+								links.get(0).click();
+								return;
+							}
+						}
+					}
+				}
+			}
+		}
+		Assert.assertTrue(false);
+	}
+	
+	@When("^Patient inputs the following information and submits: (.+) minutes, (.+) minutes, (.+), (.+)$")
+	public void patient_inputs_the_following_information_and_submits_minutes_minutes(String mins1, 
+			String mins2, String num1, String num2) throws Throwable {
+	    if(!mins1.equals("[none]")) {
+			WebElement waitingMinutes = browser.findElement(By.cssSelector("input[name=\"waitingMinutesString\"]"));
+		    waitingMinutes.sendKeys(mins1);
+	    }
+	    
+	    if(!mins2.equals("[none]")) {
+		    WebElement examMinutes = browser.findElement(By.cssSelector("input[name=\"examMinutesString\"]"));
+		    examMinutes.sendKeys(mins2);
+	    }
+	    
+	    if(!num1.equals("[none]")) {
+		    WebElement sat1 = browser.findElement(By.cssSelector("input[value=\"satRadio" + num1 + "\"]"));
+		    sat1.click();
+	    }
+	    
+	    if(!num2.equals("[none]")) {
+		    WebElement sat2 = browser.findElement(By.cssSelector("input[value=\"treRadio" + num2 + "\"]"));
+		    sat2.click();
+	    }
+	    
+	    WebElement submit = browser.findElement(By.cssSelector("input[value=\"Submit Survey\"]"));
+	    submit.click();
+	}
+	
+	@Then("^the survey answers are stored and the event is logged$")
+	public void the_survey_answers_are_stored_and_the_event_is_logged() throws Throwable {
+	    WebElement message = browser.findElement(By.className("iTrustMessage"));
+	    Assert.assertTrue(message.getText().contains("Survey Successfully Submitted"));
+	}
 }

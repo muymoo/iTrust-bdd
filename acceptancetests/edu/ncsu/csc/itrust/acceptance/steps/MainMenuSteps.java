@@ -31,4 +31,9 @@ public class MainMenuSteps {
         WebElement actualLink = browser.findElement(By.linkText(link));
         actualLink.click();
     }
+
+	public void clickLogout() {
+		WebElement logout = browser.findElement(By.linkText("Logout"));
+		logout.click();
+	}
 }
