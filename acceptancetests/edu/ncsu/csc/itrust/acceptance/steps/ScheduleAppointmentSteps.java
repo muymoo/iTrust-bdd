@@ -34,7 +34,7 @@ public class ScheduleAppointmentSteps
         Select appointmentDropDown = new Select(browser.findElement(By.name("apptType")));
         appointmentDropDown.selectByValue(appointmentType);
 
-        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         WebElement scheduler = browser.findElement(By.name("schedDate"));
         scheduler.clear();
         scheduler.sendKeys(formatter.format(date));
@@ -61,18 +61,20 @@ public class ScheduleAppointmentSteps
         browser.findElement(By.name("scheduleButton")).click();
     }
 
-    @Then("^The newly scheduled appointment is saved successfully as \"(.*?)\" with \"(.*?)\" for \"(.*?)\", for (\\d+) minutes with comment \"(.*?)\"$")
-    public void the_newly_scheduled_appointment_is_saved_successfully_as_with_for_for_minutes_with_comment(
-            String appointment, String patient, @Format("h:mma MMMMMM d, yyyy") Date date, int time, String comment)
+    @Then("^displays \"(.*?)\" with \"(.*?)\" for \"(.*?)\" for (\\d+) minutes with comment \"(.*?)\"$")
+    public void displays_with_Kelly_Doctor_for_for_minutes_with(String type, String hcp,
+            @Format("h:mma MMMMMM d, yyyy") Date date, int minutes, String comment)
             throws Throwable
     {
         String table = browser.findElement(By.xpath("//*[@id=\"iTrustContent\"]/div/table/tbody")).getText();
-        Assert.assertTrue(table.contains(appointment));
-        Assert.assertTrue(table.contains(patient));
+        Assert.assertTrue(table.contains(type));
+        Assert.assertTrue(table.contains(hcp));
 
-        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
+        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+        System.out.println(formatter.format(date));
+        System.out.println(table);
         Assert.assertTrue(table.contains(formatter.format(date)));
-
-        Assert.assertTrue(table.contains(String.valueOf(time)));
+        Assert.assertTrue(table.contains(String.valueOf(minutes)));
     }
+
 }

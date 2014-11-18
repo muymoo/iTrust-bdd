@@ -20,4 +20,9 @@ Feature: UC22 - Appointment Management
     And HCP chooses to schedule a new appointment with: Patient: 1, type:  "General Checkup" at "9:00AM July 6, 2015" with comment "This is the next checkup for your blood pressure medication."
     And HCP clicks submit to save the new appointment
     Then HCP clicks the "View My Appointments" link under the "Appointments" menu subheading
-    And The newly scheduled appointment is saved successfully as "General Checkup" with "Random Person" for "9:00AM July 6, 2015", for 45 minutes with comment "This is the next checkup for your blood pressure medication."
+    And displays "General Checkup" with "Random Person" for "9:00AM July 6, 2015" for 45 minutes with comment "This is the next checkup for your blood pressure medication."
+
+  Scenario: Patient View Upcoming Appointments
+    Given Patient 2 has authenticated successfully
+    When patient clicks the "View My Appointments" link under the "Appointments" menu subheading
+    Then displays "Consultation" with "Kelly Doctor" for "10:30AM June 4, 2015" for 30 minutes with comment "Read Comment"
