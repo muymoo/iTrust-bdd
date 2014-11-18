@@ -2,7 +2,6 @@ package edu.ncsu.csc.itrust.acceptance.steps;
 
 import java.util.List;
 
-import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
