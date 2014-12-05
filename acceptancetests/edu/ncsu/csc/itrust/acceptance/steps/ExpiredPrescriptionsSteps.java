@@ -9,7 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 
 public class ExpiredPrescriptionsSteps
