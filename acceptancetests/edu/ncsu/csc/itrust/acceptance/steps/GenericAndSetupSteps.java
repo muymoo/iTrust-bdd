@@ -31,7 +31,7 @@ public class GenericAndSetupSteps {
 	public void patient_visited_the_office_on(String date) throws Throwable {
 		(new LoginSteps(driver)).hcp_has_authenticated_successfully();
 		(new MainMenuSteps(driver)).clicksMenuItem("HCP", "Document Office Visit", "Office Visits");
-		(new EditPatientSteps(driver)).searchForPatient("2");
+		(new EditPatientSteps(driver)).searchForPatient("HCP", "2");
 		(new DocumentOfficeVisitSteps(driver)).hcp_clicks();
 		(new DocumentOfficeVisitSteps(driver)).hcp_enters_the_date_and_clicks(date);
 		(new MainMenuSteps(driver)).clickLogout();

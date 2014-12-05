@@ -42,6 +42,15 @@ public class LoginSteps
         browser.findElement(By.name("j_password")).submit();
     }
     
+    @Given("^UAP has authenticated successfully$")
+    public void uap_has_authenticated_successfully()
+            throws Throwable
+    {
+        browser.findElement(By.name("j_username")).sendKeys(String.valueOf("8000000009"));
+        browser.findElement(By.name("j_password")).sendKeys(String.valueOf("uappass1"));
+        browser.findElement(By.name("j_password")).submit();
+    }
+    
     @Given("^(?:ER|Patient) (\\d+) has authenticated successfully$")
     public void patient_has_authenticated_successfully(int patientId)
             throws Throwable

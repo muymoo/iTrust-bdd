@@ -118,7 +118,7 @@ public class MessagingSteps {
 		(new LoginSteps(driver)).hcp_has_authenticated_successfully();
 		(new MainMenuSteps(driver)).clicksMenuItem("HCP", "Message Outbox", "Messaging");
 		hcp_clicks_Compose_a_Message();
-		(new EditPatientSteps(driver)).searchForPatient("2");
+		(new EditPatientSteps(driver)).searchForPatient("HCP", "2");
 		hcpSendsMsg(subject, msg);
 		(new MainMenuSteps(driver)).clickLogout();
 	}

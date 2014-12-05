@@ -20,8 +20,8 @@ public class EditPatientSteps {
         this.browser = browser;
     }
     
-    @When("^HCP searches and selects (.+)$")
-    public void searchForPatient(String name) throws Throwable {
+    @When("^(.+) searches and selects (.+)$")
+    public void searchForPatient(String hcpOrUap, String name) throws Throwable {
     	if(name.equals("lastpatient")) {
     		name = CreatePatientSteps.lastCreatedPatientName;
     	}
