@@ -50,4 +50,8 @@ public class LoginSteps
         browser.findElement(By.name("j_password")).sendKeys(String.valueOf("pw"));
         browser.findElement(By.name("j_password")).submit();
     }
+    
+    public void logout() {
+    	browser.findElement(By.linkText("Logout")).click();
+    }
 }
