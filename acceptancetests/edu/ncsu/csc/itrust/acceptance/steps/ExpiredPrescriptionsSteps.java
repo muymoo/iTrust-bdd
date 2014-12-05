@@ -3,11 +3,13 @@ package edu.ncsu.csc.itrust.acceptance.steps;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
+import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 
 public class ExpiredPrescriptionsSteps
@@ -44,6 +46,20 @@ public class ExpiredPrescriptionsSteps
             assertEquals(rowOfInput.get(1), rowOfCells.get(1).getText());
             assertEquals(rowOfInput.get(2), rowOfCells.get(2).getText());
             assertEquals(rowOfInput.get(3), rowOfCells.get(3).getText());
+        }
+    }
+
+    @Then("^The following HCP infomation should be displayed:$")
+    public void the_following_should_be_displayed(Map<String, String> hcpInfo)
+            throws Throwable
+    {
+        List<WebElement> rows = browser.findElements(By.cssSelector("table.fTable tr"));
+
+        // Start at index 1 so we skip title row
+        for (int i = 1; i < rows.size(); i++)
+        {
+            List<WebElement> rowOfCells = rows.get(i).findElements(By.tagName("td"));
+            assertEquals(hcpInfo.get(rowOfCells.get(0).getText()), rowOfCells.get(1).getText());
         }
     }
 }
