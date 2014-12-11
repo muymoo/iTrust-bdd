@@ -8,7 +8,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(monochrome = true, format =
 {
         "pretty", "html:target/cucumber", "rerun:target/rerun.txt"
-})
+}, 
+features = {"acceptancetests/edu/ncsu/csc/itrust/acceptance/features"})
 public class RunCukesTest
 {
 }
