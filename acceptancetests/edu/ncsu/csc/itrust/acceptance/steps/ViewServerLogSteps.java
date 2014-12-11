@@ -40,7 +40,7 @@ public class ViewServerLogSteps {
 	public void a_list_should_be_displayed() throws Throwable {
 		WebElement list = browser.findElement(By.cssSelector("table.fTable"));
 		List<WebElement> rows = list.findElements(By.cssSelector("tbody tr"));
-		Assert.assertEquals(rows.size(), 4);
+		Assert.assertTrue(rows.size() >= 4);
 	}
 	
 	@Then("^AL Row (\\d+) should be (.+)\\. (.+)\\. (.+)\\.$")

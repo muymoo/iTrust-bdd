@@ -15,7 +15,7 @@ public class ViewMyDiagnosesSteps
         this.browser = browser;
     }
 
-    @Then("^displays \"(.*?)\"$")
+    @Then("^displays in diagnoses \"(.*?)\"$")
     public void displays(String diagnoses)
             throws Throwable
     {

@@ -8,18 +8,31 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class GetSatisfactionSurveySteps {
 
     private final WebDriver browser;
+    private final SharedDriver driver;
 
     public GetSatisfactionSurveySteps(SharedDriver browser)
     {
         this.browser = browser;
+        this.driver = browser;
     }
    
+    @Given("^Patient (\\d+) has taken satisfaction survey$")
+    public void patient_has_taken_satisfaction_survey(int arg1) throws Throwable {
+    	(new GenericAndSetupSteps(driver)).patient_visited_the_office_on("11/21/2014");
+    	(new LoginSteps(driver)).patient_has_authenticated_successfully(2);
+		(new MainMenuSteps(driver)).clicksMenuItem("Patient", "View My Records", "Records");
+		(new ViewMyRecordsSteps(driver)).patient_clicks_a_link_next_to_his_office_visit_on_to_take_satisfaction_survey("Nov 21, 2014");
+		(new ViewMyRecordsSteps(driver)).patient_inputs_the_following_information_and_submits_minutes_minutes("15 minute", "10 minutes", "3", "5");
+		(new MainMenuSteps(driver)).clickLogout();
+    }
+    
 	@When("^Patient inputs Surgeon for physician type and zip code (\\d+) and submits$")
 	public void patient_inputs_Surgeon_for_physician_type_and_zip_code_and_submits(int zipcode) throws Throwable {
 	    WebElement zipInput = browser.findElement(By.cssSelector("input[name=\"hcpZip\"]"));

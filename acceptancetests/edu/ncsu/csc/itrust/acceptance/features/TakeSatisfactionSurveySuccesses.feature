@@ -1,4 +1,4 @@
-Feature: UC24 Take Satisfaction Survey Successes (2 scenarios)
+Feature: UC24 Take Satisfaction Survey Successes
 
   Scenario: All Inputs
   	Given Patient 2 visited the office on 11/21/2014
